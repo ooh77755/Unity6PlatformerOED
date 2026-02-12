@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -41,5 +43,13 @@ public class PlayerController : MonoBehaviour
         if (!isJumpReq) return;
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, 28f);
         isJumpReq = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "Hazard")
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 }
