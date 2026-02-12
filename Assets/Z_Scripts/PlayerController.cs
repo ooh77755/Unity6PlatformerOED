@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] Rigidbody2D rb;
     [SerializeField] BoxCollider2D myFeetCollider;
+    [SerializeField] CapsuleCollider2D myCapsuleCollider;
 
     [SerializeField] bool isJumpReq;
 
@@ -51,5 +52,15 @@ public class PlayerController : MonoBehaviour
         {
             SceneManager.LoadScene(0);
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(myCapsuleCollider.IsTouchingLayers(LayerMask.GetMask("Enemy")))
+        {
+            SceneManager.LoadScene(0);
+        }
+
+
     }
 }
